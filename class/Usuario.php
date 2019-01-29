@@ -66,7 +66,7 @@ class Usuario {
             "1" => $id
         ));
 
-        if (isset($results)) {
+        if (count($results) > 0) {
 
             $row = $results[0];
 
@@ -74,6 +74,10 @@ class Usuario {
             $this->setLogin($row['login']);
             $this->setSenha($row['senha']);
             $this->setDataCadastro(new DateTime($row['data_cadastro']));
+
+        } else {
+
+            return "Não foi possível encontrar o usuário!";
 
         }
 
@@ -87,6 +91,49 @@ class Usuario {
             "senha" => $this->getSenha(),
             "dataCadastro" => $this->getDataCadastro()->format("d/m/Y H:i:s")
         ));
+
+    }
+
+    public function atualizar($login, $senha, $id) {
+
+        $sql = new DadosSQL();
+
+        $result = $sql->select("UPDATE usuarios SET login = ?, senha = ? WHERE id = ?", array(
+            "1" => $login,
+            "2" => $senha,
+            "3" => $id
+        ));
+
+        if (count($result) > 0) {
+
+            $this->setLogin($login);
+            $this->setSenha($senha);
+        
+        } else {
+
+            return "Usuário inexistente!";
+
+        }
+
+    }
+
+    public function excluir($id) {
+
+        $sql = new DadosSQL();
+
+        $result = $sql->select("DELETE FROM usuarios WHERE id = ?", array(
+            "1" => $id
+        ));
+
+        if (count($result) > 0) {
+
+            return "Usuário excluído!";
+
+        } else {
+
+            return "Usuário inexistente!";
+
+        }
 
     }
 

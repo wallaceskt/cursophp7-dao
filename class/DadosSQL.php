@@ -63,15 +63,6 @@ class DadosSQL extends PDO {
 
     }
 
-    public function update($rawQuery, $params = array()):array {
-
-        // Cria o statement que só funciona dentro desse método
-        $stmt = $this->query($rawQuery, $params);
-
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    }
-
 }
 
 ?>
