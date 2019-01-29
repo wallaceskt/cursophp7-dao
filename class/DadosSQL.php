@@ -22,17 +22,17 @@ class DadosSQL extends PDO {
     }
 
     // Métodos
-    private function setParams($parameters = array()) { // private function setParams($statment, $parameters = array()) {
+    private function setParams($statment, $parameters = array()) {
 
         foreach ($parameters as $key => $value) {
             
-            $this->setParam($key, $value);
+            $this->setParam($statment, $key, $value);
 
         }
 
     }
 
-    private function setParam($key, $value) { // private function setParam($statment, $key, $value) {
+    private function setParam($statment, $key, $value) {
 
         $statment->bindParam($key, $value);
 
@@ -44,7 +44,7 @@ class DadosSQL extends PDO {
         // Cria o statement que só funciona dentro desse método
         $stmt = $this->conn->prepare($rawQuery);
 
-        $this->setParams($params); // $this->setParams($stmt, $params);
+        $this->setParams($stmt, $params);
 
         // Executa a instrução SQL ($stmt)
         $stmt->execute();
@@ -58,7 +58,8 @@ class DadosSQL extends PDO {
         // Cria o statement que só funciona dentro desse método
         $stmt = $this->query($rawQuery, $params);
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC); // PDO::FETCH_ASSOC traz só os dados associativos, sem os índices do array
+         // PDO::FETCH_ASSOC traz só os dados associativos, sem os índices do array
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     }
 
