@@ -1,12 +1,11 @@
 <?php
 
-/*
+// Definindo constantes para conexão ao banco de dados
 define("HOST", "localhost");
 define("DBNAME", "dbphp7");
-define("CHARSET", "uft8");
+define("CHARSET", "utf8mb4");
 define("USER", "root");
 define("PASSWORD", "root");
-*/
 
 class DadosSQL extends PDO {
 
@@ -16,8 +15,8 @@ class DadosSQL extends PDO {
     // Método construtor para criar conexão com banco de dados
     public function __construct() {
 
-        $opcoes = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES UTF8', PDO::ATTR_PERSISTENT => TRUE);$this->conn = new PDO("mysql:host=localhost;dbname=dbphp7;charset=utf8", "root", "root", $opcoes);
-        //$this->conn = new PDO("mysql:host=" . HOST . "; dbname=" . DBNAME . "; charset=" . CHARSET . ";", USER, PASSWORD, $opcoes);
+        $opcoes = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES UTF8', PDO::ATTR_PERSISTENT => TRUE);//$this->conn = new PDO("mysql:host=localhost;dbname=dbphp7;charset=utf8", "root", "root", $opcoes);
+        $this->conn = new PDO("mysql:host=" . HOST . ";dbname=" . DBNAME . ";charset=" . CHARSET, USER, PASSWORD, $opcoes);
 
     }
 

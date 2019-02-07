@@ -17,14 +17,7 @@ echo $usuario;
 echo "<br>";
 echo $usuario->excluir(18);
 echo "<br>";
-/*
-define("HOST", "localhost");
-define("DBNAME", "dbphp7");
-define("CHARSET", "uft8");
-define("USER", "root");
-define("PASSWORD", "root");
-echo "mysql:host=" . HOST . ";dbname=" . DBNAME . ";charset=" . CHARSET . ";", USER, PASSWORD;
-*/
+echo $usuario->loadAll();
 echo "</pre>";
 
 ?>

@@ -21,7 +21,7 @@ class Usuario {
 
     }
 
-    public function getlogin() {
+    public function getlogin():string {
 
         return $this->login;
 
@@ -33,7 +33,7 @@ class Usuario {
 
     }
 
-    public function getSenha() {
+    public function getSenha():string {
 
         return $this->senha;
 
@@ -80,6 +80,39 @@ class Usuario {
             return "Não foi possível encontrar o usuário!";
 
         }
+
+    }
+
+    public function loadAll() {
+
+        $sql = new DadosSQL();
+
+        $results = $sql->select("SELECT * FROM usuarios ORDER BY id");
+
+        if (count($results) > 0) {
+
+            $reg = "********** USUÁRIOS **********<br>";
+            $reg .= "Total: ". count($results) . " usuários<br>";
+            $reg .= "******************************<br>";
+
+            foreach ($results as $row) {
+
+                $reg .= "ID: " . $row['id'] . "<br>";
+                $reg .= "Login: " . $row['login'] . "<br>";
+                $reg .= "Senha: " . $row['senha'] . "<br>";
+                $reg .= "Cadastro: " . $row['data_cadastro'] . "<br>";
+                $reg .= "******************************<br>";
+            
+            }
+
+            return $reg;
+        
+        } else {
+
+            return "Não foi possível encontrar nenhum usuário!";
+
+        }
+        
 
     }
 

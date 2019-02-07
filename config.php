@@ -1,5 +1,6 @@
 <?php
 
+// Arquivo para encontrar os arquivos das classes
 spl_autoload_register(function($className) {
 
     $fileName = "class" . DIRECTORY_SEPARATOR . "{$className}.php";
